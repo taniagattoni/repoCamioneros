@@ -3,13 +3,6 @@ const router = require('express').Router();
 const {Camionero} = require('../database/models');
 
 
-router.get("/:id", (req, res) => {
-    Camionero.findByPk(req.params.id).then(obj => {
-        res.json(obj)
-    })
-})
-
-
 
 router.get("/", (req, res) => {
     Camionero.findAll({
@@ -19,7 +12,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/create", (req, res) => {
+router.post('/create', (req, res) => {
     Camionero.create({
         dni: req.body.dni,
         nombre: req.body.nombre,

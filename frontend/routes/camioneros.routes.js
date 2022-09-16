@@ -13,6 +13,15 @@ router.get('/update/:id', (req, res) => {
     res.sendFile(path.resolve('./views/camionero/editarCamioneros.html'));
 })
 
+router.delete('/delete/:dni', (req, res) => {
+    Camionero.destroy({
+        where: {
+            dni: req.params.dni
+        }
+    }).then((object) => {
+        res.json(object);
+});
+});
 
 
 

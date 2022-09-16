@@ -7,30 +7,38 @@ class Camionero extends Model {}
 
 
 Camionero.init({
-     dni: DataTypes.NUMBER,
+   dni: {
+      type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+      primaryKey: true
+  },
+  nombre: {
+      type: DataTypes.STRING,
+      
+  },
+  telefono: {
+      type: DataTypes.STRING,
+     
+      
+  },
+  direccion: {
+      type: DataTypes.STRING,
+      
+  },
+  salario : {
+      type: DataTypes.INTEGER,
+     
+  },
+  poblacion: {
+      type: DataTypes.STRING,
+     
+  },
+}, {
+  sequelize,
+  modelName: 'camionero',
+  tableName: 'camioneros',
+});
 
-      nombre: DataTypes.STRING,
-      allowNull:false,
 
-      telefono: DataTypes.DECIMAL,
-      allowNull:false,
-    
-      direccion: DataTypes.STRING,
-      allowNull:false,
-    
-      salario: DataTypes.DECIMAL,
-      allowNull:false,
-
-      poblacion: DataTypes.STRING,
-      allowNull:false
-
-      },{
-   sequelize,
-          modelName:'camionero',
-          tableName:'camioneros'
-           })
-
-         
-          
-          module.exports = Camionero
+module.exports = Camionero;

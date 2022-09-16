@@ -1,9 +1,4 @@
-function disableButton(id) {
-  const button = document.getElementById(id)
-  button.className = button.className + " disabled"
-  button.setAttribute('disabled', 'disabled')
-  button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
-}
+
 
 function getIdFromUrl() {
   const route = new URL(window.location).pathname
@@ -12,6 +7,13 @@ function getIdFromUrl() {
 }
 
 // CRUD
+
+
+
+
+
+
+
 
 function getCamionero() {
   const id = getIdFromUrl()
@@ -31,6 +33,35 @@ function getCamionero() {
   })
 
 }
+
+
+function listaCamioneros() {
+  let listCamioneros = [];
+  let url = 'http://localhost:3000/camioneros';
+  fetch(url)
+      .then(data => data.json())
+      .then(camioneros => {
+      listCamioneros = camioneros;
+      listCamioneros.map((camionero, i) => {
+          let row = document.createElement('tr');
+          row.innerHTML = `
+              <td>${camionero.dni}</td>
+              <td>${camionero.nombre}</td>
+              <td>${camionero.telefono}</td>
+              <td>${camionero.direccion}</td>
+              <td>${camionero.salario}</td>
+              <td>${camionero.poblacion}</td>
+              <td>
+                  <a href="/camioneros/editar/${camionero.dni}" class="btn btn-warning">Editar</a>
+                  <a href="/camioneros/delete/${camionero.dni}" class="btn btn-danger">Eliminar</a>
+              </td>
+          `;
+          document.getElementById('camioneros').appendChild(row);
+})
+      })
+      .catch(err => console.log(err));
+} 
+
 
 
 function crearCamionero() {
