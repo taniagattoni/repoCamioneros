@@ -1,7 +1,10 @@
 const router = require('express').Router();
 
 const path = require('path');
+
 const camioneroRouter = require('./camioneros.routes')
+const paqueteRouter = require ('./paquete.routes')
+const provinciaRouter = require ('./provinciaRouter')
 
 router.get('/', (req, res) => {
     res.sendFile(path.resolve('./views/camionero/listarCamioneros.html'));
@@ -22,6 +25,8 @@ router.get('/create', (req, res) => {
 })
 
 router.use('/camioneros', camioneroRouter)
+router.use('/paquete', paqueteRouter)
+router.use('/provincia', provinciaRouter)
 
 
 

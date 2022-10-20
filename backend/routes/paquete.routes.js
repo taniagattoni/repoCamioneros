@@ -1,6 +1,6 @@
 const express = require ('express')
 const router = require('express').Router();
-const {Camionero, Camion, Paquete, Provincia } = require('../database/models');
+const {Camionero, Paquete, Provincia } = require('../database/models');
 
 router.get('/', (req, res) => {
     Paquete.findAll({

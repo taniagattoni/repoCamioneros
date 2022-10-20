@@ -19,7 +19,7 @@ Paquete.init({
      type:DataTypes.STRING,
      allowNull:false 
     },
-    direccionDestinatario: {
+    origen: {
         type: DataTypes.STRING,
         allowNull:false
 
