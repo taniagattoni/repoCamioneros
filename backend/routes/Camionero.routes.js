@@ -31,7 +31,7 @@ router.post('/create', (req, res) => {
 
 
 
-router.put('/edit', (req, res) => {
+router.put('/:id', (req, res) => {
     console.log(req.body)
     Camionero.update({
         nombre: req.body.nombre,

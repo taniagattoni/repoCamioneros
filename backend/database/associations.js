@@ -4,6 +4,6 @@ Camionero.hasMany(Paquete)
 Paquete.belongsTo(Camionero)
 
 
-Provincia.hasMany(Paquete)
-Paquete.belongsTo(Provincia)
+Provincia.hasMany(Paquete, {through: paqueteProvincia, foreignKey: 'provinciaId'})
+Paquete.belongsTo(Provincia, { through: paqueteProvincia, foreignKey: 'paqueteId'})
 
