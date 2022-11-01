@@ -9,7 +9,7 @@ router.get('/create', (req, res) => {
     res.sendFile(path.resolve('./views/camionero/crearCamioneros.html'));
 })
 
-router.get('/update/:id', (req, res) => {
+router.get('/update/:dni', (req, res) => {
     res.sendFile(path.resolve('./views/camionero/editarCamioneros.html'));
 })
 
@@ -22,6 +22,8 @@ router.delete('/delete/:dni', (req, res) => {
         res.json(object);
 });
 });
+
+
 
 
 

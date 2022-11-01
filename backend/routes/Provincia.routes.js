@@ -1,26 +1,26 @@
 const express = require ('express')
 const router = require('express').Router();
-const {Camion, Paquete, Provincia } = require('../database/models');
+const {Camion, Camionero, Paquete, Provincia } = require('../database/models');
 
 router.get('/', (req, res) => {
     Provincia.findAll({
-        attributes: ['codigoprovincia', 'nombre'],
+        attributes: ['codigoProvincia', 'nombre'],
         include: {
             model: Camion,
             attributes: ['matricula', 'modelo', 'tipo', 'potencia'],
         },
         include: {
                 model: Paquete,
-                attributes: ['codigopaquete', 'destinatario']  
+                attributes: ['codigoPaquete', 'destinatario']  
         }
     }).then(list => {
         res.json(list);
     });
 });
 
-router.post('/crear', (req, res) => {
+router.post('/create', (req, res) => {
     Provincia.create({
-        codigoprovincia: req.body.codigoprovincia,
+        codigoProvincia: req.body.codigoProvincia,
         nombre: req.body.nombre,
     }).then(provincia => {
         res.json(provincia);
@@ -29,29 +29,29 @@ router.post('/crear', (req, res) => {
     });
 });
 
-router.delete('/:codigoprovincia', (req, res) => {
+router.delete('/:codigoProvincia', (req, res) => {
     Provincia.destroy({
         where: {
-            codigoprovincia: req.params.codigoprovincia
+            codigoProvincia: req.params.codigoProvincia
         }
     }).then((object) => {
         res.json(object);
     })
 });
 
-router.get('/:codigoprovincia', (req, res) => {
-    Provincia.findByPk(req.params.codigoprovincia).then(provincia => {
+router.get('/:codigoProvincia', (req, res) => {
+    Provincia.findByPk(req.params.codigoProvincia).then(provincia => {
         res.json(provincia);
     });
 });
 
-router.put('/edit/:codigoprovincia', (req, res) => {
+router.put('/edit/:codigoProvincia', (req, res) => {
     Provincia.update({
-        codigoprovincia: req.body.codigoprovincia,
+        codigoProvincia: req.body.codigoProvincia,
         nombre: req.body.nombre,
     }, {
         where: {
-            codigoprovincia: req.params.codigoprovincia
+            codigoProvincia: req.params.codigoProvincia
         }
     }).then((object) => {
         res.json(object);

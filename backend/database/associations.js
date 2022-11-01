@@ -1,9 +1,15 @@
-const { Camionero, Paquete, Provincia } = require ('./models')
+const {Camionero, Paquete, Camion, Provincia} = require('./models');
 
-Camionero.hasMany(Paquete)
-Paquete.belongsTo(Camionero)
+Provincia.hasMany(Paquete, {foreignKey: 'codigoProvincia'});
+Camionero.hasMany(Paquete, {foreignKey: 'dni_camionero'});
+ 
 
 
-Provincia.hasMany(Paquete)
-Paquete.belongsTo(Provincia)
+Paquete.belongsTo(Provincia, {foreignKey: 'codigoProvincia'});
+Paquete.belongsTo(Camionero, {foreignKey: 'dni_camionero'});
+
+
+
+Camion.belongsToMany(Camionero, {through: 'camionCamionero', foreignKey: 'matricula'});
+Camionero.belongsToMany(Camion, {through: 'camionCamionero', foreignKey: 'dni_camionero'});
 

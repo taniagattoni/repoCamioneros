@@ -28,10 +28,14 @@ router.post('/create', (req, res) => {
 });
 
 
+router.get('/:dni', (req, res) => {
+    Camionero.findByPk(req.params.dni).then(camionero => {
+        res.json(camionero);
+    });
+});
 
 
-
-router.put('/:id', (req, res) => {
+router.put('/:dni', (req, res) => {
     console.log(req.body)
     Camionero.update({
         nombre: req.body.nombre,
@@ -41,17 +45,17 @@ router.put('/:id', (req, res) => {
         poblacion: req.body.poblacion
     }, {
         where: {
-            id: req.params.id
+            dni: req.params.dni
         }
     }).then((data) => {
         res.json(data);
     })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:dni', (req, res) => {
     Camionero.destroy({
         where: {
-            id: req.params.id
+            dni: req.params.dni
         }
     }).then((data) => {
         res.json(data);

@@ -18,10 +18,12 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/crear', (req, res) => {
+router.post('/create', (req, res) => {
     Paquete.create({
-        codigopaquete: req.body.codigopaquete,
+        codigoPaquete: req.body.codigoPaquete,
+        descripcion: req.body.descripcion,
         destinatario: req.body.destinatario,
+        direccion: req.body.direccion
     }).then(paquete => {
         res.json(paquete);
     }).catch(err => {
@@ -29,29 +31,32 @@ router.post('/crear', (req, res) => {
     });
 });
 
-router.delete('/:codigoprovincia', (req, res) => {
+router.delete('/:codigoPaquete', (req, res) => {
     Paquete.destroy({
         where: {
-            codigopaquete: req.params.codigopaquete
+            codigoPaquete: req.params.codigopaquete
         }
     }).then((object) => {
         res.json(object);
     })
 });
 
-router.get('/:codigopaquete', (req, res) => {
-    Paquete.findByPk(req.params.codigopaquete).then(paquete => {
+router.get('/:codigoPaquete', (req, res) => {
+    Paquete.findByPk(req.params.codigoPaquete).then(paquete => {
         res.json(paquete);
     });
 });
 
-router.put('/edit/:codigopaquete', (req, res) => {
+router.put('/edit/:codigoPaquete', (req, res) => {
     Paquete.update({
-        codigopaquete: req.body.codigopaquete,
+        codigoPaquete: req.body.codigoPaquete,
+        descripcion: req.body.descripcion,
         destinatario: req.body.destinatario,
+        codigoProvincia: req.body.codigoProvincia,
+        direccion: req.body.direccion
     }, {
         where: {
-            codigopaquete: req.params.codigopaquete
+            codigoPaquete: req.params.codigoPaquete
         }
     }).then((object) => {
         res.json(object);

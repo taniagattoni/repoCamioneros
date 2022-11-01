@@ -1,7 +1,5 @@
 const express = require('express')
 const cors = require('cors')
-const { Camionero } = require('./database/models')
-
 const app = express()
 
 const sequelize = require('./database/sequelize')

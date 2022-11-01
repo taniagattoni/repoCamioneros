@@ -2,7 +2,7 @@ const router = require('express').Router();
 const path = require('path');
 
 router.get('/', (req, res) => {
-    res.sendFile(path.resolve('./views/paquete/listarPaquete.html'));
+    res.sendFile(path.resolve('./views/paquete/listaPaquete.html'));
 })
 
 router.get('/create', (req, res) => {

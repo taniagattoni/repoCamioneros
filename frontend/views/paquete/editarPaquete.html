@@ -47,7 +47,7 @@
           }
         function editarPaquete(){
             let id = getIdPaquete();
-            let url = `http://localhost:3000/paquete/edit/${id}`;
+            let url = `http://localhost:3000/paquetes/editgit add/${id}`;
             const codigoPaquete = document.getElementById('codigoPaquete');
             const descripcion = document.getElementById('descripcion');
             const destinatario = document.getElementById('destinatario');
@@ -70,7 +70,7 @@
               .then(response => response.json())
               .then(data => {
                 console.log(data);
-                location.href = '/paquete';
+                location.href = '/paquetes';
               })
               .catch(error => console.log(error));
           }

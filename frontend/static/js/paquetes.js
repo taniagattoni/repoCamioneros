@@ -1,4 +1,3 @@
-const { Paquete } = require("../../../backend/database/models")
 
 function getIdFromUrl() {
     const route = new URL(window.location).pathname
@@ -6,18 +5,10 @@ function getIdFromUrl() {
     return pathArray[pathArray.length - 1]
   }
   
-  // CRUD
-  
-  
-  
-  
-  
-  
-  
-  
-  function getPaquete() {
+
+function getPaquete() {
     const id = getIdFromUrl()
-    const url = `http://localhost:3000/paquete${id}`
+    const url = `http://localhost:3000/paquetes${id}`
   
     fetch(url).then(res => { return res.json() }).then(object => {
         document.getElementById("codigoPaquete").value = object.codigoPaquete
@@ -33,14 +24,14 @@ function getIdFromUrl() {
   }
   
   
-  function listarPaquete() {
-    let listaPaquete = [];
-    let url = 'http://localhost:3000/paquete';
+  function listaPaquete() {
+    let listarPaquete = [];
+    let url = 'http://localhost:3000/paquetes';
     fetch(url)
         .then(data => data.json())
         .then(paquete => {
-            listaPaquete = paquete;
-            listaPaquete.map((paquete, i) => {
+            listarPaquete = paquete;
+            listarPaquete.map((paquete, i) => {
             let row = document.createElement('tr');
             row.innerHTML = `
                 <td>${paquete.codigoPaquete}</td>
@@ -61,38 +52,29 @@ function getIdFromUrl() {
   
   
   function crearPaquete() {
-    // Deshabilitar botón
-    disableButton(id = "guardar")
+    var data = getPaquete()
+    let url = "http://localhost:3000/paquetes/create";
   
-    // Preparar data
-    const url = 'http://localhost:3000/paquete/create';
-    const codigoPaquete = document.getElementById("codigoPaquete")
-    const descripcion =  document.getElementById("descripcion")
-    const destinatario = document.getElementById("destinatario")
-   
-    
-    const data = {
-      'codigoPaquete': codigoPaquete.value,
-       'descripcion': descripcion.value,
-       'destinatario': destinatario.value,
-     
-  }
-  
-  fetch(url, {
+      fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
   
-  }).then(response => response.json()).then(data => {
+      }).then(response => response.json()).then(data => {
       location.href = "/paquete"
-  }).catch(error => {
+      }).catch(error => {
       console.log(error);
       document.getElementById("error").innerText = "Ocurrió un error " + error
-  })
-  }
+      })
+  
    
           
-  
+      function getCodigo(){
+        let url = window.location.href;
+        const urlArray = url.split("/");
+        const codigo = urlArray[urlArray.length - 1];
+        return codigo;
+    }
        
    
   
@@ -147,4 +129,4 @@ function getIdFromUrl() {
               document.getElementById("error").innerText = "Ocurrió un error " + error
           })
       }
-  }
+  }}
