@@ -8,7 +8,7 @@ function getIdFromUrl() {
 
 function getPaquete() {
     const id = getIdFromUrl()
-    const url = `http://localhost:3000/paquetes${id}`
+    const url = `http://localhost:3000/paquete${id}`
   
     fetch(url).then(res => { return res.json() }).then(object => {
         document.getElementById("codigoPaquete").value = object.codigoPaquete
@@ -39,7 +39,7 @@ function getPaquete() {
                 <td>${paquete.destinatario}</td>
                 
                 <td>
-                    <a href="/paquete/editar/${paquete.codigoPaquete}" class="btn btn-warning" > Editar </a>
+                    <a href="/paquete/edit/${paquete.codigoPaquete}" class="btn btn-warning" > Editar </a>
                     <a href="/paquete/delete/${paquete.codigPaquete}" class="btn btn-danger" > Eliminar </a>
                 </td>
             `;
@@ -79,8 +79,8 @@ function getPaquete() {
    
   
   
-  function editarPaquete() {
-    // Deshabilitar botón
+    function editarPaquete() {
+
     disableButton(id = "guardar")
   
     // Preparar data
@@ -110,14 +110,14 @@ function getPaquete() {
           console.log(error);
           document.getElementById("error").innerText = "Ocurrió un error " + error
       })
-  }
+  }}
   
-  function eliminarPaquete(id) {
+  function eliminarPaquete () {
     const item = document.getElementById(id)
     const paquete = item.querySelector('.paquete').innerText
     
   
-    if (confirm(`¿Desea eliminar el paquete nº "${paquete_id}"?`)) {
+    if (confirm(`¿Desea eliminar el paquete nº "${codigoPaquete}"?`)) {
         const url = `http://localhost:3000/paquete/delete/${id}`
   
         fetch(url, {
@@ -129,4 +129,4 @@ function getPaquete() {
               document.getElementById("error").innerText = "Ocurrió un error " + error
           })
       }
-  }}
+  }

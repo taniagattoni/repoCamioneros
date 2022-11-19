@@ -52,7 +52,7 @@ router.put('/:dni', (req, res) => {
     })
 });
 
-router.delete('/:dni', (req, res) => {
+router.delete('/delete/:dni', (req, res) => {
     Camionero.destroy({
         where: {
             dni: req.params.dni
@@ -61,6 +61,7 @@ router.delete('/:dni', (req, res) => {
         res.json(data);
     })
 });
+
 
 
 module.exports = router;

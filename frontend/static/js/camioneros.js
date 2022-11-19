@@ -147,13 +147,14 @@ function editarCamioneros() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
 }).then(response => response.json()).then(data => {
-    location.href = "/camioneros/update"
+    location.href = "/camioneros"
     })
      }
 
      function eliminarCamionero(dni) {
       if(confirm("¿Está seguro que desea eliminar el camionero?")){
       let url = `http://localhost:3000/camioneros/delete/${dni}`;
+      console.log(url)
       fetch(url, {
           method: 'DELETE',
           headers: {
@@ -167,5 +168,6 @@ function editarCamioneros() {
           })
           .catch(error => console.log(error));
       }
-      alert("El camionero ha sido eliminado");
+      
+      
   }

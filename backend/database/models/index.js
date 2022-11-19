@@ -4,5 +4,5 @@ module.exports = {
    Camion: require ('./Camion'),
    Provincia: require ('./Provincia'),
    Paquete: require ('./Paquete'),
-   camionCamionero: require ('./camionCamionero')
+   camionXcamionero: require('./camionXcamionero'),
  }

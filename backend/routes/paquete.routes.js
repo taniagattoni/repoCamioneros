@@ -1,4 +1,4 @@
-const express = require ('express')
+
 const router = require('express').Router();
 const {Camionero, Paquete, Provincia } = require('../database/models');
 
@@ -31,10 +31,10 @@ router.post('/create', (req, res) => {
     });
 });
 
-router.delete('/:codigoPaquete', (req, res) => {
+router.delete('/delete/:codigoPaquete', (req, res) => {
     Paquete.destroy({
         where: {
-            codigoPaquete: req.params.codigopaquete
+            codigoPaquete: req.params.codigoPaquete
         }
     }).then((object) => {
         res.json(object);

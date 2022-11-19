@@ -1,15 +1,21 @@
 const {Camionero, Paquete, Camion, Provincia} = require('./models');
 
 Provincia.hasMany(Paquete, {foreignKey: 'codigoProvincia'});
-Camionero.hasMany(Paquete, {foreignKey: 'dni_camionero'});
+Camionero.hasMany(Paquete, {foreignKey: 'dni'});
  
 
 
 Paquete.belongsTo(Provincia, {foreignKey: 'codigoProvincia'});
-Paquete.belongsTo(Camionero, {foreignKey: 'dni_camionero'});
+Paquete.belongsTo(Camionero, {foreignKey: 'dni'});
 
 
 
-Camion.belongsToMany(Camionero, {through: 'camionCamionero', foreignKey: 'matricula'});
-Camionero.belongsToMany(Camion, {through: 'camionCamionero', foreignKey: 'dni_camionero'});
+Camion.belongsToMany(Camionero, {through: 'camionXcamionero', foreignKey: 'matricula_camion'});
+Camionero.belongsToMany(Camion, {through: 'camionXcamionero', foreignKey: 'dni_camionero'});
+
+
+
+
+
+
 
